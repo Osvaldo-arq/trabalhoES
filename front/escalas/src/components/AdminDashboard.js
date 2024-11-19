@@ -525,20 +525,17 @@ const AdminDashboard = () => {
   const processRowUpdate = (newRow) => {
     const updatedRow = { ...newRow, isNew: false };
   
-    // Verificando e extraindo o ID do caminhão (caso o campo seja um objeto)
     if (newRow.caminhoes) {
-      newRow.caminhoes = newRow.caminhoes.id || newRow.caminhoes;  // Extraindo apenas o id
+      newRow.caminhoes = newRow.caminhoes.id || newRow.caminhoes;
     }
   
-    // Verificando e extraindo o ID da escala (caso o campo seja um objeto)
     if (newRow.escalas) {
-      newRow.escalas = newRow.escalas.id || newRow.escalas;  // Extraindo apenas o id
+      newRow.escalas = newRow.escalas.id || newRow.escalas;
     }
   
     const dataToSend = { ...newRow };
-    delete dataToSend.id;  // Remove o id temporário
+    delete dataToSend.id; 
   
-    // Se a linha é nova, realiza o cadastro
     if (newRow.isNew) {
       axios
         .post('http://localhost:8080/api/funcionarios/cadastrar', dataToSend, {
@@ -548,14 +545,12 @@ const AdminDashboard = () => {
           },
         })
         .then((response) => {
-          // Atualiza a tabela com a linha salva e remove a linha de adição
           setRows((prevRows) =>
             prevRows
-              .filter((row) => row.id !== newRow.id) // Remove a linha de cadastro
-              .concat({ ...response.data, isNew: false }) // Adiciona a linha com os dados retornados
+              .filter((row) => row.id !== newRow.id) 
+              .concat({ ...response.data, isNew: false }) 
           );
   
-          // Recarregar os dados após salvar
           axios
             .get('http://localhost:8080/api/funcionarios', {
               headers: {
@@ -1118,9 +1113,9 @@ const AdminDashboard = () => {
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     if (isNaN(date)) {
-      return "Data Inválida"; // Retorna um valor padrão caso a data não seja válida
+      return "Data Inválida";
     }
-    return date.toLocaleDateString('pt-BR'); // Formato 'dd/mm/yyyy'
+    return date.toLocaleDateString('pt-BR');
   };
 
   return (
@@ -1183,7 +1178,7 @@ const AdminDashboard = () => {
         <Typography variant="h5" gutterBottom>Escalas</Typography>
         <DataGrid
             rows={escalas}
-            columns={escalaColumns} // Defina uma array `escalaColumns` com as colunas específicas das escalas
+            columns={escalaColumns} 
             editMode="row"
             rowModesModel={escalasRowModesModel}
             processRowUpdate={processEscalasRowUpdate}
