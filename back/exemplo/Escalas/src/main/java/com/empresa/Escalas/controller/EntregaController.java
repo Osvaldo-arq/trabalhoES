@@ -40,18 +40,22 @@ public class EntregaController {
         return ResponseEntity.ok(novaEntrega);
     }
 
+    @PostMapping("/cadastrar")
+    public ResponseEntity<Entrega> adicionarEntregas(@RequestBody Entrega entrega) {
+        Entrega novaEntrega = entregaService.salvarEntrega(entrega);
+        return ResponseEntity.ok(novaEntrega);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Entrega> atualizarEntrega(@PathVariable Long id, @RequestBody EntregaDTO entregaDTO) {
-        // Busca a entrega existente no banco de dados
         Entrega entregaExistente = entregaService.buscarEntregaPorId(id);
         if (entregaExistente == null) {
             return ResponseEntity.notFound().build();
         }
 
-        // Atualiza apenas o status
         entregaExistente.setStatus(entregaDTO.getStatus());
-
-        // Salva a atualização
+        entregaExistente.setEndereco(entregaDTO.getEndereco()); // Atualizando o campo endereco
+        entregaExistente.setDescricao(entregaDTO.getDescricao());
         Entrega entregaAtualizada = entregaService.salvarEntrega(entregaExistente);
         return ResponseEntity.ok(entregaAtualizada);
     }

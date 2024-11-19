@@ -36,7 +36,6 @@ public class Entrega {
 
     public Entrega(
             String descricao,
-            Funcionarios funcionarios,
             Caminhoes caminhoes,
             LocalDate dataEntrega,
             String status,

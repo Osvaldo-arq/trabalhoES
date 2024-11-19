@@ -1,10 +1,8 @@
 package com.empresa.Escalas.controller;
 
 
-import com.empresa.Escalas.model.AuthenticationDTO;
-import com.empresa.Escalas.model.LoginResponseDTO;
-import com.empresa.Escalas.model.RegisterDTO;
-import com.empresa.Escalas.model.User;
+import com.empresa.Escalas.model.*;
+import com.empresa.Escalas.repositories.FuncionariosRepository;
 import com.empresa.Escalas.repositories.UserRepository;
 import com.empresa.Escalas.service.TokenService;
 import jakarta.validation.Valid;
@@ -33,6 +31,8 @@ public class AuthenticationController {
 
     @Autowired
     private UserDetailsService userDetailsService;
+    @Autowired
+    private FuncionariosRepository funcionariosRepository;
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data) {
@@ -57,11 +57,19 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody @Valid RegisterDTO data){
-        if (this.repository.findByLogin(data.login()) !=null) return ResponseEntity.badRequest().build();
+    public ResponseEntity register(@RequestBody @Valid RegisterDTO data) {
+        if (this.repository.findByLogin(data.login()) != null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        Funcionarios funcionario = null;
+        if (data.funcionario() != null) {
+            funcionario = funcionariosRepository.findById(data.funcionario())
+                    .orElseThrow(() -> new RuntimeException("Funcionário não encontrado com ID: " + data.funcionario()));
+        }
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-        User newUser = new User(data.login(), encryptedPassword, data.role(), data.idFuncionario());
+        User newUser = new User(data.login(), encryptedPassword, data.role(), funcionario);
 
         this.repository.save(newUser);
 

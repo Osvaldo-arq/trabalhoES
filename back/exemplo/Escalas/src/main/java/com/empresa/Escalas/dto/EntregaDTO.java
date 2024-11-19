@@ -1,9 +1,47 @@
 package com.empresa.Escalas.dto;
 
-public class EntregaDTO {
-    private String status;
+import java.time.LocalDate;
 
-    // Getters e Setters
+public class EntregaDTO {
+    private Long id;
+    private String descricao;
+    private Long caminhoesId;
+    private LocalDate dataEntrega;
+    private String status;
+    private String endereco;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Long getCaminhoesId() {
+        return caminhoesId;
+    }
+
+    public void setCaminhoesId(Long caminhoesId) {
+        this.caminhoesId = caminhoesId;
+    }
+
+    public LocalDate getDataEntrega() {
+        return dataEntrega;
+    }
+
+    public void setDataEntrega(LocalDate dataEntrega) {
+        this.dataEntrega = dataEntrega;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -11,5 +49,12 @@ public class EntregaDTO {
     public void setStatus(String status) {
         this.status = status;
     }
-}
 
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+}

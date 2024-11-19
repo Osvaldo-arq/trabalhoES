@@ -1,7 +1,5 @@
 package com.empresa.Escalas.controller;
 
-
-
 import com.empresa.Escalas.model.Funcionarios;
 import com.empresa.Escalas.repositories.FuncionariosRepository;
 import com.empresa.Escalas.service.FuncionariosService;

@@ -13,6 +13,10 @@ public class EscalaService {
     @Autowired
     private EscalaRepository escalaRepository;
 
+    public List<Escala> getUserById() {
+        return escalaRepository.findAll();
+    }
+
     public List<Escala> listarTodas() {
         return escalaRepository.findAll();
     }
