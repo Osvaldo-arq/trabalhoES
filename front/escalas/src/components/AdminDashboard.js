@@ -526,7 +526,7 @@ const AdminDashboard = () => {
     const updatedRow = { ...newRow, isNew: false };
   
     if (newRow.caminhoes) {
-      newRow.caminhoes = newRow.caminhoes.id || newRow.caminhoes;
+      newRow.caminhoes = newRow.caminhoes.id || newRow.caminhoes; 
     }
   
     if (newRow.escalas) {
@@ -547,10 +547,10 @@ const AdminDashboard = () => {
         .then((response) => {
           setRows((prevRows) =>
             prevRows
-              .filter((row) => row.id !== newRow.id) 
-              .concat({ ...response.data, isNew: false }) 
+              .filter((row) => row.id !== newRow.id)
+              .concat({ ...response.data, isNew: false })
           );
-  
+
           axios
             .get('http://localhost:8080/api/funcionarios', {
               headers: {
@@ -978,7 +978,6 @@ const AdminDashboard = () => {
       headerName: 'data',
       width: 180,
       flex: 1,
-      renderCell: (params) => formatDate(params.row.data),
       editable: true },
     {
       field: 'dataFim',
@@ -986,7 +985,6 @@ const AdminDashboard = () => {
       width: 150,
       flex: 1,
       editable: true,
-      renderCell: (params) => formatDate(params.row.dataFim),
     },
     { field: 'horario', headerName: 'horario', flex: 1, width: 150, editable: true },
     { field: 'caminhoes', headerName: 'caminhoes', flex: 1, width: 100, editable: true },
@@ -1019,7 +1017,6 @@ const AdminDashboard = () => {
       field: 'dataEntrega', 
       headerName: 'Data de Entrega', 
       width: 180, 
-      renderCell: (params) => formatDate(params.row.dataEntrega),
       editable: true 
     },
     { field: 'endereco', headerName: 'Endereco', flex: 1, width: 150, editable: true },
@@ -1110,13 +1107,6 @@ const AdminDashboard = () => {
     },
   ];
   
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    if (isNaN(date)) {
-      return "Data Inválida";
-    }
-    return date.toLocaleDateString('pt-BR');
-  };
 
   return (
     <Box sx={{ marginBottom: 3, marginLeft: 'auto', marginRight: 'auto', paddingLeft: '50px', paddingRight: '50px', maxWidth: 'calc(100% - 100px)' }}>
@@ -1178,7 +1168,7 @@ const AdminDashboard = () => {
         <Typography variant="h5" gutterBottom>Escalas</Typography>
         <DataGrid
             rows={escalas}
-            columns={escalaColumns} 
+            columns={escalaColumns}
             editMode="row"
             rowModesModel={escalasRowModesModel}
             processRowUpdate={processEscalasRowUpdate}

@@ -58,8 +58,8 @@ const UserDashboard = () => {
       entrega.id === idEntrega ? { ...entrega, status: novoStatus } : entrega
     );
     setEntregas(updatedEntregas);
-    
-    axios.put(`http://localhost:8080/api/entregas/${idEntrega}/status`, { status: novoStatus }, {
+  
+    axios.put(`http://localhost:8080/api/entregas/${idEntrega}`, { status: novoStatus }, {
       headers: {
         'Authorization': `Bearer ${token}`,
       }
@@ -72,7 +72,6 @@ const UserDashboard = () => {
         setError('Erro ao atualizar o status.');
       });
   };
-  
   
 
   if (loading) {

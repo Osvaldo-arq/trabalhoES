@@ -6,7 +6,7 @@ public class EntregaDTO {
     private Long id;
     private String descricao;
     private Long caminhoesId;
-    private LocalDate dataEntrega;
+    private String dataEntrega;
     private String status;
     private String endereco;
 
@@ -34,11 +34,11 @@ public class EntregaDTO {
         this.caminhoesId = caminhoesId;
     }
 
-    public LocalDate getDataEntrega() {
+    public String getDataEntrega() {
         return dataEntrega;
     }
 
-    public void setDataEntrega(LocalDate dataEntrega) {
+    public void setDataEntrega(String dataEntrega) {
         this.dataEntrega = dataEntrega;
     }
 

@@ -43,7 +43,7 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/api/funcionarios/cadastrar").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/entregas/**").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.POST, "/api/escalas").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/entregas").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.POST, "/api/entregas/**").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.PUT, "/api/entregas/**").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.PUT, "/api/caminhoes/**").hasAnyRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/caminhoes/**").hasAnyRole("ADMIN")

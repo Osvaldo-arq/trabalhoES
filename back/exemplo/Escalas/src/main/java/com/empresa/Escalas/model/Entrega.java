@@ -26,7 +26,7 @@ public class Entrega {
     private Caminhoes caminhoes;
 
     @Column(name = "data_entrega")
-    private LocalDate dataEntrega;
+    private String dataEntrega;
 
     @Column(name = "status")
     private String status;
@@ -37,7 +37,7 @@ public class Entrega {
     public Entrega(
             String descricao,
             Caminhoes caminhoes,
-            LocalDate dataEntrega,
+            String dataEntrega,
             String status,
             String endereco
     ) {

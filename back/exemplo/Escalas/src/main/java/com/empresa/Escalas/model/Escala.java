@@ -22,19 +22,20 @@ public class Escala {
     @JoinColumn(name = "id_caminhoes")
     private Caminhoes caminhoes;
 
-    private Date data;
+    private String data;
 
-    private Date dataFim;
+    private String dataFim;
 
     private  String horario;
 
     private String turno;
 
-    public Escala(Caminhoes caminhoes, Date data, String horario, String turno) {
+    public Escala(Caminhoes caminhoes, String data,String dataFim, String horario, String turno) {
         this.caminhoes = caminhoes;
         this.data = data;
         this.turno = turno;
         this.horario = horario;
+        this.dataFim = dataFim;
     }
 
     public Escala(Long id) {

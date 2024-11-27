@@ -54,8 +54,9 @@ public class EntregaController {
         }
 
         entregaExistente.setStatus(entregaDTO.getStatus());
-        entregaExistente.setEndereco(entregaDTO.getEndereco()); // Atualizando o campo endereco
+        entregaExistente.setEndereco(entregaDTO.getEndereco());
         entregaExistente.setDescricao(entregaDTO.getDescricao());
+        entregaExistente.setDataEntrega(entregaDTO.getDataEntrega());
         Entrega entregaAtualizada = entregaService.salvarEntrega(entregaExistente);
         return ResponseEntity.ok(entregaAtualizada);
     }
@@ -70,6 +71,7 @@ public class EntregaController {
             return ResponseEntity.badRequest().body(null);
         }
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarEntrega(@PathVariable Long id) {
         boolean deleted = entregaService.deletarEntrega(id);
